@@ -1,0 +1,9 @@
+{
+  "include": [
+    "**/*", "app/controller/backStage/.js"
+  ],
+  "compilerOptions": {
+    "experimentalDecorators":true
+  },
+  
+}
