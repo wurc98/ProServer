@@ -45,6 +45,22 @@ class UsersController extends Controller {
     const res = await ctx.service.users.findOrders(ctx.request.body)
     ctx.response.body = res
   }
+
+  //修改个人信息
+  async updateInfo() {
+    const { ctx } = this;
+    console.log(ctx.request.body)
+    const res = await ctx.service.users.updateInfo(ctx.request.body)
+    ctx.response.body = res
+  }
+  async changePasswd() {
+    const { ctx } = this;
+    console.log(ctx.request.body)
+    const res = await ctx.service.users.changePasswd(ctx.request.body)
+    ctx.response.body = res
+  }
+  
+
 }
 
 module.exports = UsersController;

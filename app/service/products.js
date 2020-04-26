@@ -34,7 +34,7 @@ class ProductsService extends Service {
     const res = await ctx.model.Carts.find({account:data.account})
     console.log(res)
     if(res.length!=0){
-       const res1 = await ctx.model.Carts.updateOne({account:data.account},{$push:{goods:{name:data.name,price:data.price}}}).then(res=>{
+       const res1 = await ctx.model.Carts.updateOne({account:data.account},{$push:{goods:{name:data.name,price:data.price}}}).then(docs=>{
           return {code:1,mes:"购物车添加商品成功",res:docs}
        }).catch(err=>{
          return {code:0,mes:"购物车添加商品失败",res:docs}

@@ -8,7 +8,10 @@ module.exports = app => {
     username: { type: String },
     passwd: { type: String },
     headerImg: { type: String },
-    date: { type: String }
+    date: { type: String },
+    phone: { type:String },
+    address: { type:String },
+    label: { type:String },
   });
   return mongoose.model('users', userSchema);
 };

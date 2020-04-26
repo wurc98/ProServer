@@ -11,6 +11,13 @@ module.exports = app => {
   //上传用户头像
   router.post('/upload', controller.upload.userImg);
   router.post('/userImg', controller.users.userImg);
+  //修改个人信息
+  router.post('/updateInfo', controller.users.updateInfo);
+  //修改密码
+  router.post('/changePasswd', controller.users.changePasswd);
+
+
+
   router.post('/products/bookInfo',controller.products.bookInfo);
   router.post('/products/commentLike',controller.products.commentLike);
   router.post('/products/comment',controller.products.comment);

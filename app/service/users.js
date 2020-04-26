@@ -44,18 +44,18 @@ class UsersService extends Service {
   }
   async addOrders(data) {
     const { ctx } = this;
-      const res2 = await ctx.model.Orders.create(data);
-      if (res2.length != 0) {
-        return {
-          code: 2,
-          meg: "添加订单成功",
-          res: res2
-        }
-      }
+    const res2 = await ctx.model.Orders.create(data);
+    if (res2.length != 0) {
       return {
-        code: -1,
-        msg: '添加订单发生错误'
+        code: 2,
+        meg: "添加订单成功",
+        res: res2
       }
+    }
+    return {
+      code: -1,
+      msg: '添加订单发生错误'
+    }
   }
   async findOrders(data) {
     const { ctx } = this;
@@ -63,16 +63,35 @@ class UsersService extends Service {
     console.log('查询结果：' + res)
     if (res.length != 0) {
       return {
-        code:1,
-        msg:'订单查询成功',
+        code: 1,
+        msg: '订单查询成功',
         res
       }
     }
     return {
-      code:-1,
-      msg:'订单查询失败',
+      code: -1,
+      msg: '订单查询失败',
       res
     }
+  }
+
+  async updateInfo(data) {
+    const { ctx } = this;
+    const res = await ctx.model.Users.findOneAndUpdate({ account: data.account }, { $set: data }).then(docs => {
+      return { code: 1, mes: "修改成功", res: docs }
+    }).catch(err => {
+      return { code: 0, mes: "修改失败", res: err }
+    });
+    return res
+  }
+  async changePasswd(data) {
+    const { ctx } = this;
+    const res = await ctx.model.Users.findOneAndUpdate({ account: data.account }, { $set: {passwd:data.passwd} }).then(docs => {
+      return { code: 1, mes: "修改成功"}
+    }).catch(err => {
+      return { code: 0, mes: "修改失败", res: err }
+    });
+    return res
   }
 }
 
