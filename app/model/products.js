@@ -10,7 +10,7 @@ module.exports = app => {
     img:{
       type:String
     },
-    info:String,
+    info:{type:String},
     price:{
       type:String
     },
@@ -24,6 +24,9 @@ module.exports = app => {
       type:String
     },
     author:{
+      type:String
+    },
+    classify:{
       type:String
     },
     data:{

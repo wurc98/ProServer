@@ -38,6 +38,11 @@ class BackStageController extends Controller {
     const res = await ctx.service.backStages.removeBook(ctx.request.body)
     ctx.response.body =res
   }
+  async updateBooks(){
+    const {ctx } =this;
+    const res = await ctx.service.backStages.updateBooks(ctx.request.body)
+    ctx.response.body =res
+  }
   async addBooks(){
     const {ctx } =this;
     const res = await ctx.service.backStages.addBooks(ctx.request.body)

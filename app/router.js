@@ -40,7 +40,10 @@ module.exports = app => {
   router.post('/stage/remove',controller.backStage.removeUser)
   //查询所有书籍数据
   router.post('/stage/allBooks',controller.backStage.allBooks)
+  //删除书籍
   router.post('/stage/removeBook',controller.backStage.removeBook)
+  //修改书籍
+  router.post('/stage/updateBooks',controller.backStage.updateBooks)
   //上传书籍
   router.post('/stage/addBook',controller.backStage.addBooks)
   //上传书籍封面
@@ -48,7 +51,11 @@ module.exports = app => {
   router.post('/stage/upload',controller.upload.bookImg)
 
   //查询所有订单信息
-  // router.post('/stage/allOrders',)
+  router.post('/orders/allOrders',controller.orders.allOrders)
+  //删除订单信息
   router.post('/stage/removeOrder',controller.backStage.removeOrder)
+  //修改订单
+  router.post('/orders/updateOrders',controller.orders.updateOrders)
+  
 };
  

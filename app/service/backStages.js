@@ -51,7 +51,16 @@ class BackStrageService extends Service {
     const res = await ctx.model.Products.remove(data);
     return res
   }
-  
+  async updateBooks(data){
+    const { ctx } = this;
+    console.log(data)
+    const res = await ctx.model.Products.findOneAndUpdate({"_id":data._id},{$set:data}).then(docs => {
+      return { code: 1, mes: "修改成功"}
+      }).catch(err => {
+      return { code: 0, mes: "修改失败", res: err }
+      });
+    return res
+  }
   async addBooks(data){
     const { ctx } = this;
     console.log(data)
