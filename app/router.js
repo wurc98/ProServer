@@ -49,7 +49,6 @@ module.exports = app => {
   //上传书籍封面
   router.post('/stage/bookImg',controller.backStage.bookImg)
   router.post('/stage/upload',controller.upload.bookImg)
-
   //查询所有订单信息
   router.post('/orders/allOrders',controller.orders.allOrders)
   //删除订单信息
@@ -57,5 +56,9 @@ module.exports = app => {
   //修改订单
   router.post('/orders/updateOrders',controller.orders.updateOrders)
   
+
+
+  //按评论数排序
+  router.post('/products/rank',controller.products.rank)
 };
  

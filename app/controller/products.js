@@ -28,6 +28,12 @@ class ProductsController extends Controller {
     const res = await ctx.service.products.getCarts(ctx.request.body)
     ctx.response.body = res;
   }
+  async rank(){
+    const { ctx } = this;
+    const res = await ctx.service.products.rank(ctx.request.body)
+    ctx.response.body = res;
+  }
+  
 }
 
 module.exports = ProductsController;

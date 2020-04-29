@@ -65,6 +65,23 @@ class ProductsService extends Service {
     //   return {code:0,mes:err}
     // });
   }
+  async rank() {
+    const { ctx } = this;
+    const res = await ctx.model.Products.find()
+    function compare(property){
+      return function(a,b){
+          var value1 = a[property].length;
+          var value2 = b[property].length;
+          return value2 - value1;
+        }
+    }
+    return {
+      code:1,
+      mes:"排序成功",
+      data:res.sort(compare('comment'))
+    }
+  }
+  
 }
 
 module.exports = ProductsService;
