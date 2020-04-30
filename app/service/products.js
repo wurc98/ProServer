@@ -65,9 +65,9 @@ class ProductsService extends Service {
     //   return {code:0,mes:err}
     // });
   }
-  async rank() {
+  async rank(data) {
     const { ctx } = this;
-    const res = await ctx.model.Products.find()
+    const res = await ctx.model.Products.find(data)
     function compare(property){
       return function(a,b){
           var value1 = a[property].length;
@@ -81,7 +81,76 @@ class ProductsService extends Service {
       data:res.sort(compare('comment'))
     }
   }
-  
+  //特价
+  async addSpecial(data) {
+    const { ctx } = this;
+    const res = await ctx.model.Specials.create(data).then(docs=>{
+  		return {
+  		  code:1,
+  		  mes:"特价图书添加成功",
+  		  data:docs
+  		}
+  	}).catch(err=>{
+  		return {
+  		  code:0,
+  		  mes:"特价图书添加失败",
+  		  data:err
+  		}
+  	})
+    return res
+  }
+  async special(data) {
+    const { ctx } = this;
+    const res = await ctx.model.Specials.find(data).then(docs=>{
+		return {
+		  code:1,
+		  mes:"特价图书查询成功",
+		  data:docs
+		}
+	}).catch(err=>{
+		return {
+		  code:0,
+		  mes:"特价图书查询失败",
+		  data:err
+		}
+	})
+    return res
+  }
+  //畅销
+  async addBoom(data) {
+    const { ctx } = this;
+    const res = await ctx.model.Booms.create(data).then(docs=>{
+  		return {
+  		  code:1,
+  		  mes:"畅销图书添加成功",
+  		  data:docs
+  		}
+  	}).catch(err=>{
+  		return {
+  		  code:0,
+  		  mes:"畅销图书添加失败",
+  		  data:err
+  		}
+  	})
+    return res
+  }
+  async boom(data) {
+    const { ctx } = this;
+    const res = await ctx.model.Booms.find(data).then(docs=>{
+  		return {
+  		  code:1,
+  		  mes:"畅销图书查询成功",
+  		  data:docs
+  		}
+  	}).catch(err=>{
+  		return {
+  		  code:0,
+  		  mes:"畅销图书查询失败",
+  		  data:err
+  		}
+  	})
+    return res
+  }
 }
 
 module.exports = ProductsService;

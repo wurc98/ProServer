@@ -33,6 +33,27 @@ class ProductsController extends Controller {
     const res = await ctx.service.products.rank(ctx.request.body)
     ctx.response.body = res;
   }
+  async special(){
+    const { ctx } = this;
+    const res = await ctx.service.products.special(ctx.request.body)
+    ctx.response.body = res;
+  }
+  async addSpecial(){
+    const { ctx } = this;
+    const res = await ctx.service.products.addSpecial(ctx.request.body)
+    ctx.response.body = res;
+  }
+  async boom(){
+    const { ctx } = this;
+    const res = await ctx.service.products.boom(ctx.request.body)
+    ctx.response.body = res;
+  }
+  async addBoom(){
+    const { ctx } = this;
+    const res = await ctx.service.products.addBoom(ctx.request.body)
+    ctx.response.body = res;
+  }
+  
   
 }
 

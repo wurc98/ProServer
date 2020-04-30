@@ -15,9 +15,8 @@ module.exports = app => {
   router.post('/updateInfo', controller.users.updateInfo);
   //修改密码
   router.post('/changePasswd', controller.users.changePasswd);
-
-
-
+  
+  
   router.post('/products/bookInfo',controller.products.bookInfo);
   router.post('/products/commentLike',controller.products.commentLike);
   router.post('/products/comment',controller.products.comment);
@@ -56,9 +55,15 @@ module.exports = app => {
   //修改订单
   router.post('/orders/updateOrders',controller.orders.updateOrders)
   
-
-
-  //按评论数排序
+  //特价图书查询
+  router.post('/products/special',controller.products.special)
+  //添加特价图书
+  router.post('/products/addSpecial',controller.products.addSpecial)
+  //畅销图书查询
+  router.post('/products/boom',controller.products.boom)
+  //添加畅销图书
+  router.post('/products/addBoom',controller.products.addBoom)
+  //按评论数排序（分类）
   router.post('/products/rank',controller.products.rank)
 };
  
