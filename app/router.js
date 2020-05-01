@@ -19,7 +19,9 @@ module.exports = app => {
   
   router.post('/products/bookInfo',controller.products.bookInfo);
   router.post('/products/commentLike',controller.products.commentLike);
+  //评论
   router.post('/products/comment',controller.products.comment);
+  router.post('/products/getComment',controller.products.getComment);
   router.post('/products/joinCarts',controller.products.joinCarts);
   //购物车接口
   router.post('/carts/getCart',controller.carts.getCarts);

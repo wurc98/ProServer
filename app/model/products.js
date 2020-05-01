@@ -15,8 +15,9 @@ module.exports = app => {
       type:String
     },
     seckill:Number,
-    comment:{
-      type:Array
+    commentNum:{
+      type:Number,
+      default:0
     },
     pubtime:String,
     language:String,

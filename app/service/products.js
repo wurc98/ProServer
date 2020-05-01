@@ -12,19 +12,31 @@ class ProductsService extends Service {
     const { ctx } = this;
     const commentInfo = {
       ...data,
-      like: 0,
-      dislike: 0,
       likename: [],
       dislikename: [],
       reply: []
     }
-    const res = await ctx.model.Products.updateOne({ name: data.name }, { $push: { comment: commentInfo } }).then( ( docs)=> {
+    const res = await ctx.model.Comments.create(commentInfo).then(( docs)=> {
       console.log("命令触发")
       console.log("修改成功")
+      console.log(docs)
       return  {code:1,mes:"提交成功"}
     }).catch(err=>{
       console.log(err)
       return {code:0,mes:"提交失败"}
+    })
+    const res1 = await ctx.model.Comments.find({name:data.name})
+    await ctx.model.Products.updateOne({name:data.name},{$set:{commentNum:res1.length}})
+    return res
+  }
+  //获取评论信息
+  async getComment(data) {
+    const { ctx } = this;
+    console.log("测试获取评论")
+    const res = await ctx.model.Comments.find(data).then(docs=>{
+      return {code:1,mes:docs}
+    }).catch(err=>{
+      return {code:0,mes:err}
     })
     return res
   }
@@ -67,18 +79,20 @@ class ProductsService extends Service {
   }
   async rank(data) {
     const { ctx } = this;
-    const res = await ctx.model.Products.find(data)
+    const res = await ctx.model.Products.find(data).then(docs=>{
+      return docs
+    })
     function compare(property){
       return function(a,b){
-          var value1 = a[property].length;
-          var value2 = b[property].length;
+          var value1 = a[property];
+          var value2 = b[property];
           return value2 - value1;
         }
     }
     return {
       code:1,
       mes:"排序成功",
-      data:res.sort(compare('comment'))
+      data:res.sort(compare('commentNum'))
     }
   }
   //特价

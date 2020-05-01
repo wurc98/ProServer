@@ -13,6 +13,11 @@ class ProductsController extends Controller {
     const res = await ctx.service.products.comment(ctx.request.body)
     ctx.response.body = res;
   }
+  async getComment(){
+    const {ctx}=this;
+    const res = await ctx.service.products.getComment(ctx.request.body)
+    ctx.response.body = res;
+  }
   async commentLike(){
     const { ctx } = this;
     const res = await ctx.service.products.commentLike(ctx.request.body)
