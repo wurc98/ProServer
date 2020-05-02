@@ -59,8 +59,12 @@ module.exports = app => {
   
   //特价图书查询
   router.post('/products/special',controller.products.special)
+  //定特价
+  router.post('/products/pricingSec',controller.products.pricingSec)
   //添加特价图书
   router.post('/products/addSpecial',controller.products.addSpecial)
+   //删除特价图书
+   router.post('/products/removeSpecial',controller.products.removeSpecial)
   //畅销图书查询
   router.post('/products/boom',controller.products.boom)
   //添加畅销图书

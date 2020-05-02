@@ -98,7 +98,17 @@ class ProductsService extends Service {
   //特价
   async addSpecial(data) {
     const { ctx } = this;
-    const res = await ctx.model.Specials.create(data).then(docs=>{
+    let newData=[]
+    // console.log(data)
+    for(let i=0;i<data.length;i++){
+    //  console.log(data[i])
+      const r = await ctx.model.Specials.find({"_id":data[i]._id})
+      // console.log(r)
+      if(r.length==0){
+        newData.push(data[i])
+      }
+    }
+    const res = await ctx.model.Specials.create(newData).then(docs=>{
   		return {
   		  code:1,
   		  mes:"特价图书添加成功",
@@ -108,6 +118,23 @@ class ProductsService extends Service {
   		return {
   		  code:0,
   		  mes:"特价图书添加失败",
+  		  data:err
+  		}
+  	})
+    return res
+  }
+  async removeSpecial(data) {
+    const { ctx } = this;
+    const res = await ctx.model.Specials.remove(data).then(docs=>{
+  		return {
+  		  code:1,
+  		  mes:"特价图书删除成功",
+  		  data:docs
+  		}
+  	}).catch(err=>{
+  		return {
+  		  code:0,
+  		  mes:"特价图书删除失败",
   		  data:err
   		}
   	})
@@ -125,6 +152,23 @@ class ProductsService extends Service {
 		return {
 		  code:0,
 		  mes:"特价图书查询失败",
+		  data:err
+		}
+	})
+    return res
+  }
+  async pricingSec(data) {
+    const { ctx } = this;
+    const res = await ctx.model.Specials.update({"_id":data._id},{$set:{seckill:data.seckill}}).then(docs=>{
+		return {
+		  code:1,
+		  mes:"定价成功",
+		  data:docs
+		}
+	}).catch(err=>{
+		return {
+		  code:0,
+		  mes:"定价失败",
 		  data:err
 		}
 	})

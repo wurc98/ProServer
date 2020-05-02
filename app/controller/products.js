@@ -43,9 +43,19 @@ class ProductsController extends Controller {
     const res = await ctx.service.products.special(ctx.request.body)
     ctx.response.body = res;
   }
+  async pricingSec(){
+    const { ctx } = this;
+    const res = await ctx.service.products.pricingSec(ctx.request.body)
+    ctx.response.body = res;
+  }
   async addSpecial(){
     const { ctx } = this;
     const res = await ctx.service.products.addSpecial(ctx.request.body)
+    ctx.response.body = res;
+  }
+  async removeSpecial(){
+    const { ctx } = this;
+    const res = await ctx.service.products.removeSpecial(ctx.request.body)
     ctx.response.body = res;
   }
   async boom(){
