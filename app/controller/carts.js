@@ -12,6 +12,11 @@ class CartsController extends Controller {
     const res = await ctx.service.carts.updateNum(ctx.request.body)
     ctx.response.body = res;
   }
+  async removeCart(){
+    const { ctx } = this;
+    const res = await ctx.service.carts.removeCart(ctx.request.body)
+    ctx.response.body = res;
+  }
 }
 
 module.exports = CartsController;

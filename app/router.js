@@ -27,6 +27,7 @@ module.exports = app => {
   router.post('/carts/getCart',controller.carts.getCarts);
   //更新购物车物品数量接口
   router.post('/carts/updateNum',controller.carts.updateNum)
+  router.post('/carts/removeCart',controller.carts.removeCart)
   //提交订单
   router.post('/users/addOrders',controller.users.addOrders)
   //用户订单查询
@@ -52,6 +53,8 @@ module.exports = app => {
   router.post('/stage/upload',controller.upload.bookImg)
   //查询所有订单信息
   router.post('/orders/allOrders',controller.orders.allOrders)
+  //添加订单
+  router.post('/orders/submit',controller.orders.index)
   //删除订单信息
   router.post('/stage/removeOrder',controller.backStage.removeOrder)
   //修改订单
@@ -66,9 +69,11 @@ module.exports = app => {
    //删除特价图书
    router.post('/products/removeSpecial',controller.products.removeSpecial)
   //畅销图书查询
-  router.post('/products/boom',controller.products.boom)
+  router.post('/products/booms',controller.products.booms)
   //添加畅销图书
-  router.post('/products/addBoom',controller.products.addBoom)
+  router.post('/products/addBooms',controller.products.addBooms)
+  //删除特价图书
+  router.post('/products/removeBooms',controller.products.removeBooms)
   //按评论数排序（分类）
   router.post('/products/rank',controller.products.rank)
 };

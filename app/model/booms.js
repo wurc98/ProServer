@@ -14,7 +14,6 @@ module.exports = app => {
     price:{
       type:String
     },
-    seckill:Number,
     comment:{
       type:Array
     },

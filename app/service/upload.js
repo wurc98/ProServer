@@ -18,7 +18,6 @@ class UploadService extends Service {
       }
     });
     // const res = await ctx.model.Users.find(stream.fields)
-    console.log(res)
     let target  = path.join(this.config.baseDir, `app/public/comfiles/${stream.filename}`);
     const result = await new Promise((resolve, reject) => {
         const remoteFileStream = fs.createWriteStream(target);

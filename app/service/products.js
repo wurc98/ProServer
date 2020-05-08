@@ -89,10 +89,11 @@ class ProductsService extends Service {
           return value2 - value1;
         }
     }
+    let rank = res.sort(compare('commentNum')).slice(0,10)
     return {
       code:1,
       mes:"排序成功",
-      data:res.sort(compare('commentNum'))
+      data:rank
     }
   }
   //特价
@@ -175,7 +176,7 @@ class ProductsService extends Service {
     return res
   }
   //畅销
-  async addBoom(data) {
+  async addBooms(data) {
     const { ctx } = this;
     const res = await ctx.model.Booms.create(data).then(docs=>{
   		return {
@@ -192,7 +193,7 @@ class ProductsService extends Service {
   	})
     return res
   }
-  async boom(data) {
+  async booms(data) {
     const { ctx } = this;
     const res = await ctx.model.Booms.find(data).then(docs=>{
   		return {
@@ -204,6 +205,23 @@ class ProductsService extends Service {
   		return {
   		  code:0,
   		  mes:"畅销图书查询失败",
+  		  data:err
+  		}
+  	})
+    return res
+  }
+  async removeBooms(data){
+    const { ctx } = this;
+    const res = await ctx.model.Booms.remove(data).then(docs=>{
+  		return {
+  		  code:1,
+  		  mes:"畅销图书删除成功",
+  		  data:docs
+  		}
+  	}).catch(err=>{
+  		return {
+  		  code:0,
+  		  mes:"畅销图书删除失败",
   		  data:err
   		}
   	})

@@ -58,17 +58,21 @@ class ProductsController extends Controller {
     const res = await ctx.service.products.removeSpecial(ctx.request.body)
     ctx.response.body = res;
   }
-  async boom(){
+  async booms(){
     const { ctx } = this;
-    const res = await ctx.service.products.boom(ctx.request.body)
+    const res = await ctx.service.products.booms(ctx.request.body)
     ctx.response.body = res;
   }
-  async addBoom(){
+  async addBooms(){
     const { ctx } = this;
-    const res = await ctx.service.products.addBoom(ctx.request.body)
+    const res = await ctx.service.products.addBooms(ctx.request.body)
     ctx.response.body = res;
   }
-  
+  async removeBooms(){
+    const { ctx } = this;
+    const res = await ctx.service.products.removeBooms(ctx.request.body)
+    ctx.response.body = res;
+  }
   
 }
 
